@@ -1,0 +1,37 @@
+name: Deploy to EC2
+
+# Runs automatically every time you push to main branch
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download your code onto the Actions runner
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: SSH into your EC2 and run deployment commands
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            cd ~/attendance-system
+
+            # Pull the latest code
+            git pull origin main
+
+            # Rebuild and restart containers
+            docker compose down
+            docker compose up -d --build
+
+            # Clean up old unused images to save disk space
+            docker system prune -f
+
+            echo "Deployment complete!"
