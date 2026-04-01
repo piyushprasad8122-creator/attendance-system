@@ -1,4 +1,4 @@
-yamlname: Deploy to EC2
+name: Deploy to EC2
 
 on:
   push:
@@ -24,18 +24,10 @@ jobs:
         run: |
           printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          echo "Key file size:"
-          wc -c ~/.ssh/deploy_key
-          echo "First line:"
-          head -1 ~/.ssh/deploy_key
-          echo "Last line:"
-          tail -1 ~/.ssh/deploy_key
 
       - name: Scan host key
         run: |
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-          echo "known_hosts content:"
-          cat ~/.ssh/known_hosts
 
       - name: Deploy to server
         run: |
