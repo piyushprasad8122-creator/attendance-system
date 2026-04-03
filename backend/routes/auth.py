@@ -5,7 +5,7 @@ from utils.auth import hash_password, verify_password, create_access_token, get_
 from datetime import datetime
 from bson import ObjectId
 
-router = APIRouter(prefix="/api/auth", tags=["Authentication"])
+router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 @router.post("/register")
 async def register(user: UserRegister):

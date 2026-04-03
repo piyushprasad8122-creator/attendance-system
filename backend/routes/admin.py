@@ -7,7 +7,7 @@ from datetime import datetime, date
 import pandas as pd
 import io
 
-router = APIRouter(prefix="/api/admin", tags=["Admin"])
+router = APIRouter(prefix="/admin", tags=["Admin"])
 
 # ─── Dashboard Overview ───────────────────────────────────────────────────────
 

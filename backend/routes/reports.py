@@ -4,7 +4,7 @@ from utils.auth import get_current_user
 from datetime import datetime, date
 from bson import ObjectId
 
-router = APIRouter(prefix="/api/reports", tags=["Reports"])
+router = APIRouter(prefix="/reports", tags=["Reports"])
 
 @router.get("/summary")
 async def my_summary(current_user: dict = Depends(get_current_user)):

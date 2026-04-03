@@ -4,7 +4,7 @@ from utils.auth import get_current_user
 from datetime import datetime, date
 from bson import ObjectId
 
-router = APIRouter(prefix="/api/attendance", tags=["Attendance"])
+router = APIRouter(prefix="/attendance", tags=["Attendance"])
 
 @router.post("/checkin")
 async def check_in(current_user: dict = Depends(get_current_user)):

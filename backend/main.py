@@ -6,11 +6,7 @@ from routes.face import router as face_router
 from routes.admin import router as admin_router
 from routes.reports import router as reports_router
 
-app = FastAPI(
-    title="Attendance Management System",
-    description="Office attendance tracking with face detection",
-    version="1.0.0"
-)
+app = FastAPI(title="Attendance Management System")
 
 app.add_middleware(
     CORSMiddleware,
@@ -25,10 +21,6 @@ app.include_router(attendance_router)
 app.include_router(face_router)
 app.include_router(admin_router)
 app.include_router(reports_router)
-
-@app.get("/")
-def root():
-    return {"message": "Attendance API is running", "version": "1.0.0"}
 
 @app.get("/health")
 def health():

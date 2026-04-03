@@ -5,7 +5,7 @@ from utils.auth import get_current_user
 from utils.face import decode_image, detect_face, extract_face_encoding, verify_face
 from datetime import datetime, date
 
-router = APIRouter(prefix="/api/face", tags=["Face Detection"])
+router = APIRouter(prefix="/face", tags=["Face Detection"])
 
 class ImageData(BaseModel):
     image: str  # base64 encoded image
